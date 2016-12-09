@@ -57,12 +57,15 @@ public class DriverInfoActivity extends Activity {
         }
 
         if(driverName.length() != 0 && driverOld.length() != 0 && driverAcquisition.length() != 0 && driverLastDay.length() != 0 && driverSexText.length() != 0) {
+
             Intent intent = new Intent(this, EvaluetorInfoActivity.class);
+
             intent.putExtra("DRIVER_NAME", driverName);
             intent.putExtra("DRIVER_OLD", driverOld);
             intent.putExtra("DRIVER_ACQUISITION", driverAcquisition);
             intent.putExtra("DRIVER_LAST_DAY", driverLastDay);
             intent.putExtra("DRIVER_SEX", driverSexText);
+
             startActivity(intent);
         } else {
             Toast.makeText(this, "全ての項目を入力して下さい", Toast.LENGTH_LONG).show();

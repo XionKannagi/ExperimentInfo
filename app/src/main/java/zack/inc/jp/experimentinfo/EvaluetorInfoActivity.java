@@ -85,15 +85,24 @@ public class EvaluetorInfoActivity extends Activity {
         }
 
         if (evaluatorName.length() != 0 && evaluatorOld.length() != 0 && evaluatorAcquisition.length() != 0 && evaluatorLastDay.length() != 0 && evaluatorSexText.length() != 0) {
+
             DataLogger dataLogger = new DataLogger(getApplicationContext(), timeStamp, driverName, evaluatorName);
+
             dataLogger.saveUserInfo("Name","Sex","Old","Acquisition date","The Last Date");
+
             dataLogger.saveUserInfo(driverName, driverSexText, driverOld, driverAcquisition, driverLastDay);
+
             dataLogger.saveUserInfo(evaluatorName, evaluatorSexText, evaluatorOld, evaluatorAcquisition, evaluatorLastDay);
+
             dataLogger.saveUserInfo("Time","item_01","item_02","item_03","item_04");
+
+
             Intent intent = new Intent(this, EvaluateActivity.class);
+
             intent.putExtra("TIME_STAMP",timeStamp);
             intent.putExtra("DRIVER_NAME", driverName);
             intent.putExtra("EVALUATOR_NAME", evaluatorName);
+
             startActivity(intent);
         } else {
             Toast.makeText(this, "必要な項目が抜けています！", Toast.LENGTH_LONG).show();

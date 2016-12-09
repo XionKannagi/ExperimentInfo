@@ -18,11 +18,12 @@ import java.util.TimeZone;
 
 public class EvaluateActivity extends Activity {
 
+    java.text.DateFormat df;
+
+    private static final int EVALUATE_ITEMS = 4; //評価項目の個数
     DataLogger dataLogger;
     String timeStamp, driverName, evaluatorName;
-    //RadioGroup radioGroup1, radioGroup2, radioGroup3, radioGroup4;
-    java.text.DateFormat df;
-    RadioGroup radioGroups[] = new RadioGroup[4];
+    RadioGroup radioGroups[] = new RadioGroup[EVALUATE_ITEMS];
     int radioGroupID[] = {
             R.id.radioGroup1,
             R.id.radioGroup2,
@@ -34,6 +35,7 @@ public class EvaluateActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluate);
+
         Intent intent = getIntent();
         timeStamp = intent.getStringExtra("TIME_STAMP");
         driverName = intent.getStringExtra("DRIVER_NAME");
@@ -41,22 +43,12 @@ public class EvaluateActivity extends Activity {
 
         dataLogger = new DataLogger(getApplicationContext(), timeStamp, driverName, evaluatorName);
 
-//        radioGroup1 = (RadioGroup) findViewById(R.id.radioGroup1);
-//        radioGroup2 = (RadioGroup) findViewById(R.id.radioGroup2);
-//        radioGroup3 = (RadioGroup) findViewById(R.id.radioGroup3);
-//        radioGroup4 = (RadioGroup) findViewById(R.id.radioGroup4);
-
-
-//        radioGroups[0] = (RadioGroup) findViewById(R.id.radioGroup1);
-//        radioGroups[1] = (RadioGroup) findViewById(R.id.radioGroup2);
-//        radioGroups[2] = (RadioGroup) findViewById(R.id.radioGroup3);
-//        radioGroups[4] = (RadioGroup) findViewById(R.id.radioGroup4);
-
-
+        //一気に関連付け
         for (int i = 0; i < radioGroupID.length; i++) {
             radioGroups[i] = (RadioGroup) findViewById(radioGroupID[i]);
         }
 
+        //データの記録用のフォーマット
         df = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss.SSS", Locale.JAPAN);
         df.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
 
@@ -65,17 +57,19 @@ public class EvaluateActivity extends Activity {
 
     public void saveEval(View v) {
 
-        String itemValue[] = new String[4];
+        String itemValue[] = new String[EVALUATE_ITEMS];
         int invalidCount = 0;
-        int checkedIds[] = new int[4];
-        for (int i = 0; i < itemValue.length; i++) {
+        int checkedIds[] = new int[EVALUATE_ITEMS];
+
+        //itemValueの初期化
+        for (int i = 0; i < EVALUATE_ITEMS; i++) {
             itemValue[i] = "0";
         }
 
+        //チェック項目を一気に取得
+        for (int i = 0; i < EVALUATE_ITEMS; i++) {
 
-        for (int i = 0; i < radioGroups.length; i++) {
             checkedIds[i] = radioGroups[i].getCheckedRadioButtonId();
-            Log.d("checkedId :", ""+ checkedIds[i]);
 
             if (checkedIds[i] != -1) {
                 // 選択されているラジオボタンの取得
@@ -84,10 +78,8 @@ public class EvaluateActivity extends Activity {
                 // ラジオボタンのテキストを取得
                 itemValue[i] = radioButton.getText().toString();
 
-                Log.d("itemValue:",itemValue[i]);
-
             } else {
-                invalidCount++;
+                invalidCount++; //チェックされていない項目の個数
                 Log.d("invalid count",":"+invalidCount);
             }
 
@@ -97,8 +89,8 @@ public class EvaluateActivity extends Activity {
         if (invalidCount > 0) {
             Toast.makeText(this, "全ての項目を入力して下さい", Toast.LENGTH_LONG).show();
         } else {
-
             dataLogger.saveValue(df.format(new Date()), itemValue[0], itemValue[1], itemValue[2], itemValue[3]);
+            //入力決定後チェックを全て外す
             clearChecked();
 
         }
@@ -106,7 +98,7 @@ public class EvaluateActivity extends Activity {
     }
 
     public void clearChecked() {
-        for (int i = 0; i < radioGroups.length; i++) {
+        for (int i = 0; i < EVALUATE_ITEMS; i++) {
             radioGroups[i].clearCheck();
         }
     }

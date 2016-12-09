@@ -27,13 +27,16 @@ public class DataLogger {
         this.evaluatorName = evaluatorName;
         this.saveTime = timeStamp;
         this.appContext = context;
+
+        //記録先
         String exPathStr = appContext.getExternalFilesDir(null).getPath();// /root/sdcard/Android/data/package_name/filesを取得
+        //file名を追加
         this.filePathStr = exPathStr + "/" + saveTime + "_dr_" + driverName + "_ev_" + evaluatorName + ".csv";
 
 
     }
 
-
+    //運転手，評価者記録用メソッド
     public void saveUserInfo(String name, String sex, String old, String acquisition, String lastDay) {
         FileOutputStream fos;
         BufferedWriter bw = null;
@@ -76,6 +79,7 @@ public class DataLogger {
 
     }
 
+    //評価記録用メソッド
     public void saveValue(String timeStamp, String item1Value, String item2Value, String item3Value, String item4Value) {
         FileOutputStream fos;
         BufferedWriter bw = null;
