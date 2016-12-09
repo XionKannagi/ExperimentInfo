@@ -58,13 +58,15 @@
                     android:id="@+id/value_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="男" />
+                    android:text="男"
+                    android:layout_marginEnd="16dp"/>
 
                 <RadioButton
                     android:id="@+id/value_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="女" />
+                    android:text="女"
+                    android:layout_marginStart="16dp"/>
 
 
             </RadioGroup>
@@ -143,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="When was the last time you drove?"
+                android:hint="The last time you drove?"
                 android:inputType="date" />
 
             <Button
@@ -154,7 +156,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="26dp"
                 android:onClick="nextButton"
-                android:text="Next" />
+                android:text="Next"
+                android:background="@drawable/layout_shape" />
 
         </LinearLayout>
     </ScrollView>

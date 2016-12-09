@@ -37,6 +37,7 @@ public class EvaluetorInfoActivity extends Activity {
         driverLastDay = intent.getStringExtra("DRIVER_LAST_DAY");
         driverSexText = intent.getStringExtra("DRIVER_SEX");
 
+
         eName = (EditText) findViewById(R.id.EvaluatorNameText);
         eOld = (EditText) findViewById(R.id.eOldText);
         eAcquisition = (EditText) findViewById(R.id.eAcquisitionDateText);
