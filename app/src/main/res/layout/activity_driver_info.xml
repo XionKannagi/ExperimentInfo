@@ -35,7 +35,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:ems="10"
-                android:hint="Your Name"
+                android:hint="Driver's Name"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:layout_alignStart="@+id/DriverNameText"
                 android:layout_below="@+id/radioGroup"
                 android:ems="10"
-                android:hint="How old?"
+                android:hint="How old"
                 android:inputType="number" />
 
             <TextView

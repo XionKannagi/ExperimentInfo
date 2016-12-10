@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-public class DriverInfoActivity extends Activity {
+public class DriverInfoActivity extends AppCompatActivity {
 
     EditText dName, dOld, dAcquisition, dLastDay;
     private String driverName, driverOld, driverAcquisition, driverLastDay, driverSexText;

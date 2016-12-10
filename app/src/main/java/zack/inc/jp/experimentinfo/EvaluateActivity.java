@@ -4,6 +4,7 @@ package zack.inc.jp.experimentinfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
@@ -16,7 +17,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class EvaluateActivity extends Activity {
+public class EvaluateActivity extends AppCompatActivity {
 
     java.text.DateFormat df;
 

@@ -86,7 +86,7 @@
                 android:layout_alignStart="@+id/DriverNameText"
                 android:layout_below="@+id/radioGroup"
                 android:ems="10"
-                android:hint="How old?"
+                android:hint="How old"
                 android:inputType="number" />
 
             <TextView

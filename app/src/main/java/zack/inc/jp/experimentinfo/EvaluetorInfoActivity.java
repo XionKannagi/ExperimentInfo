@@ -3,6 +3,10 @@ package zack.inc.jp.experimentinfo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +20,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class EvaluetorInfoActivity extends Activity {
+public class EvaluetorInfoActivity extends AppCompatActivity {
 
     EditText eName, eOld, eAcquisition, eLastDay;
     private String evaluatorName, evaluatorOld, evaluatorAcquisition, evaluatorLastDay, evaluatorSexText;
@@ -63,8 +67,8 @@ public class EvaluetorInfoActivity extends Activity {
         String timeStamp = df.format(new Date());
 
         if (evaluatorAcquisition.length() == 0) {
-            evaluatorAcquisition = "0";
-            evaluatorLastDay = "0";
+            evaluatorAcquisition = "NaN";
+            evaluatorLastDay = "NaN";
         }
 
 
@@ -88,9 +92,11 @@ public class EvaluetorInfoActivity extends Activity {
 
             DataLogger dataLogger = new DataLogger(getApplicationContext(), timeStamp, driverName, evaluatorName);
 
-            dataLogger.saveUserInfo("Name","Sex","Old","Acquisition date","The Last Date");
+            dataLogger.saveUserInfo("Driver","Sex","Old","Acquisition date","The Last Date");
 
             dataLogger.saveUserInfo(driverName, driverSexText, driverOld, driverAcquisition, driverLastDay);
+
+            dataLogger.saveUserInfo("Evaluator","Sex","Old","Acquisition date","The Last Date");
 
             dataLogger.saveUserInfo(evaluatorName, evaluatorSexText, evaluatorOld, evaluatorAcquisition, evaluatorLastDay);
 
