@@ -37,7 +37,7 @@ public class DataLogger {
     }
 
     //運転手，評価者記録用メソッド
-    public void saveUserInfo(String name, String sex, String old, String acquisition, String lastDay) {
+    public void saveUserInfo(String name, String sex, String old, String acquisition,String frequency, String lastDay) {
         FileOutputStream fos;
         BufferedWriter bw = null;
 
@@ -53,6 +53,8 @@ public class DataLogger {
             sb.append(old);
             sb.append(",");
             sb.append(acquisition);
+            sb.append(",");
+            sb.append(frequency);
             sb.append(",");
             sb.append(lastDay);
 

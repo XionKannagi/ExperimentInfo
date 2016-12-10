@@ -22,9 +22,9 @@ import java.util.TimeZone;
 
 public class EvaluetorInfoActivity extends AppCompatActivity {
 
-    EditText eName, eOld, eAcquisition, eLastDay;
-    private String evaluatorName, evaluatorOld, evaluatorAcquisition, evaluatorLastDay, evaluatorSexText;
-    private String driverName, driverOld, driverAcquisition, driverLastDay, driverSexText;
+    EditText eName, eOld, eAcquisition, eFrequency, eLastDay;
+    private String evaluatorName, evaluatorOld, evaluatorAcquisition, evaluatorFrequency, evaluatorLastDay, evaluatorSexText;
+    private String driverName, driverOld, driverAcquisition, driverFrequency, driverLastDay, driverSexText;
     RadioGroup radioGroup;
 
     java.text.DateFormat df;
@@ -38,6 +38,7 @@ public class EvaluetorInfoActivity extends AppCompatActivity {
         driverName = intent.getStringExtra("DRIVER_NAME");
         driverOld = intent.getStringExtra("DRIVER_OLD");
         driverAcquisition = intent.getStringExtra("DRIVER_ACQUISITION");
+        driverFrequency = intent.getStringExtra("DRIVER_FREQUENCY");
         driverLastDay = intent.getStringExtra("DRIVER_LAST_DAY");
         driverSexText = intent.getStringExtra("DRIVER_SEX");
 
@@ -45,6 +46,7 @@ public class EvaluetorInfoActivity extends AppCompatActivity {
         eName = (EditText) findViewById(R.id.EvaluatorNameText);
         eOld = (EditText) findViewById(R.id.eOldText);
         eAcquisition = (EditText) findViewById(R.id.eAcquisitionDateText);
+        eFrequency = (EditText) findViewById(R.id.eFrequency);
         eLastDay = (EditText) findViewById(R.id.eLastDayText);
 
         radioGroup = (RadioGroup) findViewById(R.id.eSexRadioGroup);
@@ -61,6 +63,7 @@ public class EvaluetorInfoActivity extends AppCompatActivity {
         evaluatorName = eName.getText().toString();
         evaluatorOld = eOld.getText().toString();
         evaluatorAcquisition = eAcquisition.getText().toString();
+        evaluatorFrequency = eFrequency.getText().toString();
         evaluatorLastDay = eLastDay.getText().toString();
         int checkedId = radioGroup.getCheckedRadioButtonId();
 
@@ -68,6 +71,7 @@ public class EvaluetorInfoActivity extends AppCompatActivity {
 
         if (evaluatorAcquisition.length() == 0) {
             evaluatorAcquisition = "NaN";
+            evaluatorFrequency = "NaN";
             evaluatorLastDay = "NaN";
         }
 
@@ -88,24 +92,24 @@ public class EvaluetorInfoActivity extends AppCompatActivity {
 
         }
 
-        if (evaluatorName.length() != 0 && evaluatorOld.length() != 0 && evaluatorAcquisition.length() != 0 && evaluatorLastDay.length() != 0 && evaluatorSexText.length() != 0) {
+        if (evaluatorName.length() != 0 && evaluatorOld.length() != 0 && evaluatorAcquisition.length() != 0 && evaluatorFrequency.length() != 0 && evaluatorLastDay.length() != 0 && evaluatorSexText.length() != 0) {
 
             DataLogger dataLogger = new DataLogger(getApplicationContext(), timeStamp, driverName, evaluatorName);
 
-            dataLogger.saveUserInfo("Driver","Sex","Old","Acquisition date","The Last Date");
+            dataLogger.saveUserInfo("Driver", "Sex", "Old", "Acquisition date", "Frequency", "The Last Date");
 
-            dataLogger.saveUserInfo(driverName, driverSexText, driverOld, driverAcquisition, driverLastDay);
+            dataLogger.saveUserInfo(driverName, driverSexText, driverOld, driverAcquisition, driverFrequency, driverLastDay);
 
-            dataLogger.saveUserInfo("Evaluator","Sex","Old","Acquisition date","The Last Date");
+            dataLogger.saveUserInfo("Evaluator", "Sex", "Old", "Acquisition date", "Frequency", "The Last Date");
 
-            dataLogger.saveUserInfo(evaluatorName, evaluatorSexText, evaluatorOld, evaluatorAcquisition, evaluatorLastDay);
+            dataLogger.saveUserInfo(evaluatorName, evaluatorSexText, evaluatorOld, evaluatorAcquisition, evaluatorFrequency, evaluatorLastDay);
 
-            dataLogger.saveUserInfo("Time","item_01","item_02","item_03","item_04");
+            dataLogger.saveValue("Time", "before", "after", "Shake", "Value");
 
 
             Intent intent = new Intent(this, EvaluateActivity.class);
 
-            intent.putExtra("TIME_STAMP",timeStamp);
+            intent.putExtra("TIME_STAMP", timeStamp);
             intent.putExtra("DRIVER_NAME", driverName);
             intent.putExtra("EVALUATOR_NAME", evaluatorName);
 

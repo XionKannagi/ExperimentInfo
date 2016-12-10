@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 public class DriverInfoActivity extends AppCompatActivity {
 
-    EditText dName, dOld, dAcquisition, dLastDay;
-    private String driverName, driverOld, driverAcquisition, driverLastDay, driverSexText;
+    EditText dName, dOld, dAcquisition, dFrequency, dLastDay;
+    private String driverName, driverOld, driverAcquisition, driverFrequency, driverLastDay, driverSexText;
     RadioGroup radioGroup;
 
     @Override
@@ -27,6 +27,7 @@ public class DriverInfoActivity extends AppCompatActivity {
         dName = (EditText) findViewById(R.id.DriverNameText);
         dOld = (EditText) findViewById(R.id.dOldText);
         dAcquisition = (EditText) findViewById(R.id.dAcquisitionDateText);
+        dFrequency = (EditText) findViewById(R.id.dFrequency);
         dLastDay = (EditText) findViewById(R.id.dLastDayText);
         radioGroup = (RadioGroup) findViewById(R.id.dSexRadioGroup);
 
@@ -38,6 +39,7 @@ public class DriverInfoActivity extends AppCompatActivity {
         driverName = dName.getText().toString();
         driverOld = dOld.getText().toString();
         driverAcquisition = dAcquisition.getText().toString();
+        driverFrequency = dFrequency.getText().toString();
         driverLastDay = dLastDay.getText().toString();
         int checkedId = radioGroup.getCheckedRadioButtonId();
 
@@ -48,7 +50,7 @@ public class DriverInfoActivity extends AppCompatActivity {
             // ラジオボタンのテキストを取得
             String text = radioButton.getText().toString();
 
-            if(text.equals("男")){
+            if (text.equals("男")) {
                 driverSexText = "Male";
             } else {
                 driverSexText = "Female";
@@ -57,13 +59,14 @@ public class DriverInfoActivity extends AppCompatActivity {
 
         }
 
-        if(driverName.length() != 0 && driverOld.length() != 0 && driverAcquisition.length() != 0 && driverLastDay.length() != 0 && driverSexText.length() != 0) {
+        if (driverName.length() != 0 && driverOld.length() != 0 && driverAcquisition.length() != 0 && driverFrequency.length() != 0 && driverLastDay.length() != 0 && driverSexText.length() != 0) {
 
             Intent intent = new Intent(this, EvaluetorInfoActivity.class);
 
             intent.putExtra("DRIVER_NAME", driverName);
             intent.putExtra("DRIVER_OLD", driverOld);
             intent.putExtra("DRIVER_ACQUISITION", driverAcquisition);
+            intent.putExtra("DRIVER_FREQUENCY",driverFrequency);
             intent.putExtra("DRIVER_LAST_DAY", driverLastDay);
             intent.putExtra("DRIVER_SEX", driverSexText);
 
